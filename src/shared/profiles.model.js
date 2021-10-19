@@ -9,7 +9,10 @@ const ProfileSchema = new Schema({
 
 ProfileSchema.index.findByName = { by: 'name', type: 'n1ql' };
 
-const ProfileModel = model('profile', ProfileSchema);
+const ProfileModel = model('profile', ProfileSchema, {
+  idKey: 'pid',
+  collectionName: 'profile' 
+});
 
 module.exports = {
   ProfileModel
