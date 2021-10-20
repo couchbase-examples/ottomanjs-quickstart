@@ -18,6 +18,12 @@ const restCreateBucket = async() => {
   .catch(error => console.log(`Bucket may already exist: ${error.message}`))
 }
 
+/* 
+  Ottoman will create it's own collections based on your code, we will setup this anyways. 
+  There is no harm in Ottoman having this collection already setup before it ever interacts with the DB
+  If it did not exists Ottoman would go ahead and create it because we specify a collection of the same name
+  in the profile-model document.
+  */
 const restCreateCollection = async() => {
   const data = { name: 'profile' }
   await axios({
