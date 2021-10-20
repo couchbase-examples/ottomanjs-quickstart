@@ -1,7 +1,7 @@
 import express from 'express'
 import bcrypt from 'bcryptjs'
 import cors from 'cors'
-import { ottoman } from '../db/ottomanConnection'
+import { ottoman, FindOptions } from '../db/ottomanConnection'
 import { ProfileModel } from './shared/profiles.model'
 import { makeResponse } from './shared/makeResponse'
 
@@ -69,6 +69,23 @@ app.delete("/profile/:pid",
     res.status(204)
   })
 )
+
+app.get("/profiles", async (req, res) => {
+  await makeResponse(res, async () => {
+    const { limit, searchFirstName, skip } = req.query
+    const options = new FindOptions({ 
+      limit: Number(limit || 5), 
+      skip: Number(skip || 0),
+      searchFirstName: `%${searchFirstName}%`
+    })
+    const filter = (searchFirstName)
+      ? { firstName: { $like: `%${searchFirstName}%`, $ignoreCase: true } }
+      : {}
+    const result = await ProfileModel.find(filter, options)
+    const { rows: items } = result
+    return { items }
+  })
+})
 
 module.exports = { 
   app, ottoman

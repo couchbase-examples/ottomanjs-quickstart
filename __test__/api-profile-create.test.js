@@ -67,43 +67,5 @@ describe('POST /profile', () => {
     })
 
   })
-  
-  // describe('given a request without user & pass', () => {
-  //   const expected = { statusCode: 400, message: 'email and pass are required' }
-  //   test(`should respond with statusCode 400 and message: '${expected.message}'`, async() => {
-  //     const response = await request(app).post('/profile').send({
-  //       firstName: profile.firstName,
-  //       lastName: profile.lastName
-  //     })
-  //     expect(response.statusCode).toBe(expected.statusCode)
-  //     expect(response.body.message).toBe(expected.message)
-  //   })
-  // })
-
-  // describe('given the email is missing', () => {
-  //   const expected = { statusCode: 400, message: 'email is required' }
-  //   test(`should respond with statusCode 400 and message: ${expected.message}`, async() => {
-  //     const response = await request(app).post('/profile').send({
-  //       firstName: profile.firstName,
-  //       lastName: profile.lastName,
-  //       pass: profile.pass
-  //     })
-  //     expect(response.statusCode).toBe(expected.statusCode)
-  //     expect(response.body.message).toBe(expected.message)
-  //   })
-  // })
-
-  // describe('given the pass is missing', () => {
-  //   const expected = { statusCode: 400, message: 'pass is required' }
-  //   test(`should respond with statusCode 400 and message: '${expected.message}'`, async() => {
-  //     const response = await request(app).post('/profile').send({
-  //       firstName: profile.firstName, 
-  //       lastName: profile.lastName, 
-  //       email: profile.email
-  //     })
-  //     expect(response.statusCode).toBe(expected.statusCode)
-  //     expect(response.body.message).toBe(expected.message)
-  //   })
-  // })
 
 })
