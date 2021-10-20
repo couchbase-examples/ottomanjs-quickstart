@@ -1,4 +1,4 @@
-import { model, Schema } from 'ottoman';
+import { model, Schema } from 'ottoman'
 
 const ProfileSchema = new Schema({
   firstName: { type: String, required: true },
@@ -7,12 +7,12 @@ const ProfileSchema = new Schema({
   pass: { type: String, required: true },
 })
 
-ProfileSchema.index.findByName = { by: 'name', type: 'n1ql' };
+ProfileSchema.index.findByName = { by: 'name', type: 'n1ql' }
 
 const ProfileModel = model('profile', ProfileSchema, {
   idKey: 'pid',
   collectionName: 'profile' 
-});
+})
 
 module.exports = {
   ProfileModel

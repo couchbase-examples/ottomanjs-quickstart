@@ -1,7 +1,7 @@
 import express from 'express'
 import bcrypt from 'bcryptjs'
 import cors from 'cors'
-import { ottoman } from '../db/connection'
+import { ottoman } from '../db/ottomanConnection'
 import { ProfileModel } from './shared/profiles.model'
 import { makeResponse } from './shared/makeResponse'
 
@@ -29,13 +29,46 @@ app.post("/profile", async (req, res) => {
   }
 
   await makeResponse(res, () => {
-    res.status(201)
+    res.status(200)
     const profile = new ProfileModel({
       ...req.body, pass: bcrypt.hashSync(req.body.pass, 10)
     })
     return profile.save()
   })
 })
+
+app.get("/profile/:pid", 
+  async (req, res) => await makeResponse(res, () => 
+    ProfileModel.findById(req.params.pid)
+  )
+)
+
+app.put("/profile/:pid", 
+  async (req, res) => {
+    ProfileModel.findById(req.params.pid)
+      .then(async (result) => {
+        /* Create a New Document with new values, 
+          if they are not passed from request, use existing values */
+        const newDoc = {
+          pid: result.pid,
+          firstName: req.body.firstName ? req.body.firstName : result.firstName,
+          lastName: req.body.lastName ? req.body.lastName : result.lastName,
+          email: req.body.email ? req.body.email : result.email,
+          pass: req.body.pass ? bcrypt.hashSync(req.body.pass, 10) : result.pass,
+        }
+        /* Persist updates with new doc */
+        await makeResponse(res, () => {
+          return ProfileModel.replaceById(req.params.pid, newDoc)
+        })
+      })
+})
+
+app.delete("/profile/:pid", 
+  async (req, res) => await makeResponse(res, () => {
+    ProfileModel.removeById(req.params.pid)
+    res.status(204)
+  })
+)
 
 module.exports = { 
   app, ottoman
