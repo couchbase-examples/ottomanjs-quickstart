@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "06ccf9ca-276c-4907-8691-99a5423af5db",
+		"_postman_id": "1b8b34d0-adfc-4bd2-a464-2ac0ca4cd7d1",
 		"name": "Node Quickstart",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -90,7 +90,7 @@
 					]
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8091/pools/default/buckets/user_profile/collections/_default",
+					"raw": "http://127.0.0.1:8091/pools/default/buckets/user_profile/scopes/_default/collections",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -104,8 +104,9 @@
 						"default",
 						"buckets",
 						"user_profile",
-						"collections",
-						"_default"
+						"scopes",
+						"_default",
+						"collections"
 					]
 				}
 			},
@@ -269,7 +270,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{api_url}}/profiles?skip=0&limit=1&search=john",
+					"raw": "{{api_url}}/profiles?skip=0&limit=1&search=jo",
 					"host": [
 						"{{api_url}}"
 					],

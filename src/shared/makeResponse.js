@@ -1,4 +1,4 @@
-import { ValidationError} from 'ottoman'
+import { ValidationError} from '../../db/ottomanConnection'
 
 async function makeResponse(res, action) {
   try {
