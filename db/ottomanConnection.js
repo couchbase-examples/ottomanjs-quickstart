@@ -1,4 +1,4 @@
-import { Ottoman, getOttomanInstances, ValidationError, FindOptions } from 'ottoman'
+import { Ottoman, getOttomanInstances, getDefaultInstance, ValidationError, FindOptions, SearchConsistency } from 'ottoman'
 
 const ottoman = new Ottoman({
   modelKey: 'type',
@@ -6,4 +6,4 @@ const ottoman = new Ottoman({
   collectionName: '_default',
 })
 
-module.exports = { ottoman, getOttomanInstances, ValidationError, FindOptions }
+module.exports = { ottoman, getOttomanInstances, getDefaultInstance, ValidationError, FindOptions, SearchConsistency }
