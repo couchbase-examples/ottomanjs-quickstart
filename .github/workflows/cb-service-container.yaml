@@ -57,7 +57,7 @@ jobs:
     - name: Setup node modules
       run: npm ci
     - name: Setup unit tests
-      run: npm run init-test-db && npm run init-test-index
+      run: npm run init-test-db
     - name: Unit Tests
       run: npm test
     services:
