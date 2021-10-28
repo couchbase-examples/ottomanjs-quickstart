@@ -1,8 +1,8 @@
-# Profile Store in Couchbase with Node JS and Express
+# Profile Store in Couchbase with Ottoman JS and Express
 
 [![Try it now!](https://da-demo-images.s3.amazonaws.com/runItNow_outline.png?couchbase-example=ottomanjs-quickstart-repo&source=github)](https://gitpod.io/#https://github.com/couchbase-examples/ottomanjs-quickstart)
 
-This is a companion repository for: "[Quickstart in Couchbase with Node JS and Express](https://developer.couchbase.com/tutorial-quickstart-nodejs/)" at [developer.couchbase.com](https://developer.couchbase.com), which aims to get you up and running with Couchbase and the [NodeJS SDK](https://docs.couchbase.com/nodejs-sdk/current/hello-world/start-using-sdk.html), connect to a Couchbase cluster, create, read, update, and delete documents, and how to write simple parameterized N1QL queries.
+This is a companion repository for: "[Quickstart Ottoman JS and Express](https://developer.couchbase.com/tutorial-quickstart-ottomanjs)" at [developer.couchbase.com](https://developer.couchbase.com), which aims to get you up and running with Couchbase and [Ottoman V2](https://ottomanjs.com), connect to a Couchbase cluster, create, read, update, and delete documents, and how to write simple parameterized N1QL queries using Ottoman's Query Builder.
 
 We will be using the latest version of Couchbase (version 7) that enables scopes and collections.
 
@@ -39,6 +39,5 @@ npm start
 The first two commands are only required to be run once before running the integration tests to ensure the database is set up in the right configuration:
 
 ```sh
-npm run init-test-db && \
-npm run init-test-index
+npm run init-test-db
 ```
