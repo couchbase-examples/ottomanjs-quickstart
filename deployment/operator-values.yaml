@@ -390,5 +390,3 @@ coredns:
   - default.svc.cluster.local
   - svc.cluster.local
   - cluster.local
-
- 
