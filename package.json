@@ -15,6 +15,7 @@
   },
   "jest": {
     "testEnvironment": "node",
+    "setupFilesAfterEnv": ["./__test__/jest.setup.js"],
     "coveragePathIgnorePatterns": [
       "/node_modules/",
       "dist/"

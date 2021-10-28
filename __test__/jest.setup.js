@@ -1,20 +1,26 @@
-import { getOttomanInstances, getDefaultInstance, Ottoman } from './imports'
-import { bucketName, connectionString, password, username } from './testData';
+import {app, ottoman} from "../src/app";
 
-beforeEach(async () => {
-  let options = { scopeName: '_default', collectionName: 'profile' }
+let instance;
+beforeEach(async() => {
+  try {
+    await ottoman.connect({
+      bucketName: process.env.CB_BUCKET,
+      connectionString: process.env.CB_URL,
+      username: process.env.CB_USER,
+      password: process.env.CB_PASS,
+    })
+    // By default start function will wait for indexes, but you can disabled it setting ignoreWatchIndexes to true.
+    // It's not required to execute the start method in order for Ottoman work.
+    await ottoman.start()
 
-  const ottoman = new Ottoman(options)
-  await ottoman.connect({
-    password,
-    username,
-    connectionString,
-    bucketName,
-  })
+    const port = process.env.APP_PORT
+    instance = await app.listen(port)
+    console.log('app started')
+  } catch (e) {
+    console.log(e)
+  }
 })
 
 afterEach(async () => {
-  for (const instance of getOttomanInstances()) {
-    await instance.close()
-  }
+  instance && await instance.close()
 })

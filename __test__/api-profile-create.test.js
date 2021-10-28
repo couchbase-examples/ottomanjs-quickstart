@@ -5,7 +5,8 @@ import {
   app                                 // REST application
 } from './imports'
 
-import { delay, startInTest } from './testData';
+import { delay, startInTest } from './testData'
+import { ProfileModel } from '../src/shared/profiles.model'
 
 describe('POST /profile', () => {
 
@@ -22,9 +23,10 @@ describe('POST /profile', () => {
 
     test('should respond with statusCode 200 and return document persisted', async() => {
       await startInTest(getDefaultInstance())
-      await delay(500);
+      await delay(500)
       const response = await request(app).post('/profile').send(profile)
-      console.log(`log response from request ${response}`)
+      console.log("log response from request body:")
+      console.log(response.body)
       pid = response.body.pid
       const hashedPass = response.body.pass
 
@@ -41,7 +43,9 @@ describe('POST /profile', () => {
     })
 
     afterEach(async() => {
-      console.log(`after each`)
+      await ProfileModel.removeById(pid)
+        .then(() => { console.log('test profile document deleted', pid) })
+        .catch((e) => console.log(`test profile remove failed: ${e.message}`))
     })
 
   })
