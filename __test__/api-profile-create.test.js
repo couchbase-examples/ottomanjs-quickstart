@@ -25,7 +25,7 @@ describe('POST /profile', () => {
       await startInTest(getDefaultInstance())
       await delay(500)
       const response = await request(app).post('/profile').send(profile)
-      console.log("log response from request body:")
+      console.log('log response from request body:')
       console.log(response.body)
       pid = response.body.pid
       const hashedPass = response.body.pass

@@ -8,7 +8,7 @@ import {
 import { delay, startInTest } from './testData'
 import { ProfileModel } from '../src/shared/profiles.model'
 
-describe('DELETE /profile/{id}', () => {
+describe('GET /profile/{id}', () => {
   describe('given we pass a pid as request param', () => {
     var profile = new ProfileModel({
       firstName: 'Joseph', lastName: 'Developer',
@@ -17,17 +17,22 @@ describe('DELETE /profile/{id}', () => {
 
     beforeEach(async() => {
       await profile.save()
-        .then(() => { console.log('test item inserted', profile) })
-        .catch((e) => console.log(`Test Profile Insert Failed: ${e.message}`))
+        .then(() => { console.log('test profile document inserted', profile) })
+        .catch((e) => console.log(`test profile insert failed: ${e.message}`))
     })
 
-    test('should respond with status code 200 OK', async() => {
+    test('should respond with status code 200 OK and return profile as object', async() => {
       await startInTest(getDefaultInstance())
       await delay(500)
-      console.log(`profile.id`)
-      console.log(profile.id)
-      const response = await request(app).delete(`/profile/${profile.pid}`).send()
-      expect(response.statusCode).toBe(204)
+      const response = await request(app).get(`/profile/${profile.pid}`).send()
+      expect(response.statusCode).toBe(200)
+      expect(response.body).toMatchObject(profile)
+    })
+
+    afterEach(async() => {
+      await ProfileModel.removeById(profile.pid)
+        .then(() => { console.log('test profile document deleted', profile) })
+        .catch((e) => console.log(`test profile remove failed: ${e.message}`))
     })
 
   })
