@@ -19,9 +19,9 @@ app.get('/', function (req, res) {
   res.send('<body onload="window.location = \'/swagger-ui/\'"><a href="/swagger-ui/">Click here to see the API</a>')
 })
 
-app.post("/profile", async (req, res) => {
+app.post('/profile', async (req, res) => {
   if (!req.body.email || !req.body.pass) {
-    return res.status(400).send({ "message": `${!req.body.email ? 'email ' : ''}${
+    return res.status(400).send({ 'message': `${!req.body.email ? 'email ' : ''}${
       (!req.body.email && !req.body.pass) 
         ? 'and pass are required' : (req.body.email && !req.body.pass) 
           ? 'pass is required' : 'is required'
@@ -37,13 +37,13 @@ app.post("/profile", async (req, res) => {
   })
 })
 
-app.get("/profile/:pid", 
+app.get('/profile/:pid', 
   async (req, res) => await makeResponse(res, () => 
     ProfileModel.findById(req.params.pid)
   )
 )
 
-app.put("/profile/:pid", 
+app.put('/profile/:pid', 
   async (req, res) => {
     ProfileModel.findById(req.params.pid)
       .then(async (result) => {
@@ -63,14 +63,14 @@ app.put("/profile/:pid",
       })
 })
 
-app.delete("/profile/:pid", 
+app.delete('/profile/:pid', 
   async (req, res) => await makeResponse(res, () => {
     ProfileModel.removeById(req.params.pid)
     res.status(204)
   })
 )
 
-app.get("/profiles", async (req, res) => {
+app.get('/profiles', async (req, res) => {
   await makeResponse(res, async () => {
     const { limit, searchFirstName, skip } = req.query
     const options = new FindOptions({ 

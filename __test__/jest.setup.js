@@ -1,4 +1,4 @@
-import {app, ottoman} from "../src/app";
+import {app, ottoman} from '../src/app'
 
 let instance;
 beforeEach(async() => {

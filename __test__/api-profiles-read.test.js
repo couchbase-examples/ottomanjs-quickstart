@@ -9,7 +9,7 @@ import { delay, startInTest } from './testData'
 import { ProfileModel } from '../src/shared/profiles.model'
 
 describe('GET /profiles', () => {
-  describe('given we get profiles with skip 1, limit 1, and search text of 'jo'', () => {
+  describe('given we get profiles with skip 1, limit 1, and search text of "jo"', () => {
     var profile1 = new ProfileModel({
       firstName: 'Joe', lastName: 'Schmoe',
       email: 'joe.schmoe@couchbase.com', pass: bcrypt.hashSync('mypassword1', 10)
