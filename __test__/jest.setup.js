@@ -1,7 +1,7 @@
 import {app, ottoman} from '../src/app'
 
 let instance;
-beforeAll(async() => {
+beforeEach(async() => {
   try {
     await ottoman.connect({
       bucketName: process.env.CB_BUCKET,
@@ -21,7 +21,7 @@ beforeAll(async() => {
   }
 })
 
-afterAll(async () => {
+afterEach(async () => {
   instance && await instance.close()
   await ottoman.close()
 })
