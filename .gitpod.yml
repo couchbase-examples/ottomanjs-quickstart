@@ -26,6 +26,4 @@ github:
     branches: true
     pullRequests: true
     addCheck: true
-    addComment: true
     addBadge: true
-    addLabel: true
