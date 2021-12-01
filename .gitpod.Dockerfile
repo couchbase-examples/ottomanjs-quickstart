@@ -15,5 +15,4 @@ RUN addgroup --gid 33333 gitpod && \
      usermod -a -G gitpod,couchbase,sudo gitpod && \
      echo 'gitpod ALL=(ALL) NOPASSWD:ALL'>> /etc/sudoers
 
-COPY start-cb.sh /opt/couchbase/bin/start-cb.sh
 USER gitpod
