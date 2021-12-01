@@ -16,11 +16,18 @@ const restCreateBucket = async() => {
     url: 'http://127.0.0.1:8091/pools/default/buckets',
   })
   .catch((error) => {
-    if (error.response.data.errors && error.response.data.errors.ramQuota) {
+    if (error.response === undefined) {
+      console.error("Error Creating Bucket:", error.code);
+    } else if (error.response.data.errors && error.response.data.errors.name) {
+      console.error("Error Creating Bucket:", error.response.data.errors.name, "\n");
+    } else if (error.response.data.errors && error.response.data.errors.ramQuota) {
       console.error("Error Creating Bucket:", error.response.data.errors.ramQuota);
       console.log("Try deleting other buckets or increasing cluster size. \n");
+    } else if (error.response.data.errors) {
+      console.error("Error Creating Bucket: ");
+      console.error(error.response.data.errors, "\n");
     } else {
-      console.log(`Bucket may already exist: ${error.message} \n`);
+      console.error("Error Creating Bucket:", error.message);
     }
   })
 }
@@ -40,8 +47,10 @@ const restCreateCollection = async() => {
     url: `http://127.0.0.1:8091/pools/default/buckets/${process.env.CB_BUCKET}/scopes/_default/collections`
   })
   .catch((error) => {
-    if (error.response.status === 404) {
-      console.error(`Error Creating Collection: bucket \'${process.env.CB_BUCKET}\' not found. \n`)
+    if (error.response === undefined) {
+      console.error("Error Creating Collection:", error.code);
+    } else if (error.response.status === 404) {
+      console.error(`Error Creating Collection: bucket \'${COUCHBASE_BUCKET}\' not found. \n`)
     } else {
       console.log(`Collection may already exist: ${error.message} \n`)
     }
@@ -58,8 +67,3 @@ const initializeBucketAndCollection = async() => {
 
 initializeBucketAndCollection()
 
-// module.exports = {
-//   restCreateBucket,
-//   restCreateCollection,
-//   delay
-// }
