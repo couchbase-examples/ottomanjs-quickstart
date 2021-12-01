@@ -19,8 +19,6 @@ describe('POST /profile', () => {
     const expected = { statusCode: 200, message: '' }
     let pid
 
-    console.log(`start of the test`)
-
     test('should respond with statusCode 200 and return document persisted', async() => {
       await startInTest(getDefaultInstance())
       await delay(500)

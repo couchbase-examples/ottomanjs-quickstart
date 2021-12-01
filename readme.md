@@ -40,4 +40,6 @@ The first two commands are only required to be run once before running the integ
 
 ```sh
 npm run init-test-db
+
+npm test
 ```

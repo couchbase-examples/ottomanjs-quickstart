@@ -15,11 +15,18 @@ const restCreateBucket = async() => {
     data: qs.stringify(data),
     url: 'http://127.0.0.1:8091/pools/default/buckets',
   })
-  .catch(error => console.log(`Bucket may already exist: ${error.message}`))
+  .catch((error) => {
+    if (error.response.data.errors && error.response.data.errors.ramQuota) {
+      console.error("Error Creating Bucket:", error.response.data.errors.ramQuota);
+      console.log("Try deleting other buckets or increasing cluster size. \n");
+    } else {
+      console.log(`Bucket may already exist: ${error.message} \n`);
+    }
+  })
 }
 
-/* 
-  Ottoman will create it's own collections based on your code, we will setup this anyways. 
+/*
+  Ottoman will create it's own collections based on your code, we will setup this anyways.
   There is no harm in Ottoman having this collection already setup before it ever interacts with the DB
   If it did not exists Ottoman would go ahead and create it because we specify a collection of the same name
   in the profile-model document.
@@ -30,9 +37,15 @@ const restCreateCollection = async() => {
     method: 'POST',
     headers: { 'content-type': 'application/x-www-form-urlencoded', 'Authorization': auth },
     data: qs.stringify(data),
-    url: `http://127.0.0.1:8091/pools/default/buckets/${process.env.CB_BUCKET}/collections/_default`
+    url: `http://127.0.0.1:8091/pools/default/buckets/${process.env.CB_BUCKET}/scopes/_default/collections`
   })
-  .catch(error => console.log(`Collection may already exist: ${error.message}`))
+  .catch((error) => {
+    if (error.response.status === 404) {
+      console.error(`Error Creating Collection: bucket \'${process.env.CB_BUCKET}\' not found. \n`)
+    } else {
+      console.log(`Collection may already exist: ${error.message} \n`)
+    }
+  })
 }
 
 const initializeBucketAndCollection = async() => {
@@ -46,7 +59,7 @@ const initializeBucketAndCollection = async() => {
 initializeBucketAndCollection()
 
 // module.exports = {
-//   restCreateBucket, 
+//   restCreateBucket,
 //   restCreateCollection,
 //   delay
 // }

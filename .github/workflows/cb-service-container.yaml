@@ -2,6 +2,11 @@ name: Run NPM tests using couchbase service container
 on:
   workflow_dispatch:
   push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
   schedule:
   - cron: "0 11 * * 0"
 jobs:
@@ -13,7 +18,7 @@ jobs:
     steps:
     - name: Update repositories
       run: |
-        apt update || echo "apt-update failed" # && apt -y upgrade 
+        apt update || echo "apt-update failed" # && apt -y upgrade
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
@@ -62,7 +67,7 @@ jobs:
       run: npm test
     services:
       couchbase:
-        image: couchbase:enterprise-7.0.0-beta
+        image: couchbase:enterprise-7.0.0
         ports:
           - 8091:8091
           - 8092:8092
