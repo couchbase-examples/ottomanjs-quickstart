@@ -24,5 +24,4 @@ beforeEach(async() => {
 
 afterEach(async () => {
   instance && await instance.close()
-  await ottoman.close()
 })
