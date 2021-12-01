@@ -14,7 +14,9 @@
   },
   "jest": {
     "testEnvironment": "node",
-    "setupFilesAfterEnv": ["./__test__/jest.setup.js"],
+    "setupFilesAfterEnv": [
+      "./__test__/jest.setup.js"
+    ],
     "coveragePathIgnorePatterns": [
       "/node_modules/",
       "dist/"
@@ -42,7 +44,7 @@
     "@babel/plugin-transform-runtime": "^7.13.15",
     "@babel/preset-env": "^7.14.1",
     "env-cmd": "^8.0.2",
-    "jest": "^26.6.3",
+    "jest": "^27.4.2",
     "nodemon": "^2.0.7",
     "supertest": "^6.1.3"
   }
