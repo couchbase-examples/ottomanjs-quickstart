@@ -1,6 +1,7 @@
 import {app, ottoman} from '../src/app'
 
 let instance;
+let ottomanInstance;
 beforeEach(async() => {
   try {
     await ottoman.connect({
@@ -23,4 +24,5 @@ beforeEach(async() => {
 
 afterEach(async () => {
   instance && await instance.close()
+  await ottoman.close()
 })
