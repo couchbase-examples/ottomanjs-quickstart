@@ -2,6 +2,8 @@ name: Run NPM tests using couchbase service container
 on:
   workflow_dispatch:
   push:
+    branches:
+      - master
   pull_request:
     branches:
       - master
