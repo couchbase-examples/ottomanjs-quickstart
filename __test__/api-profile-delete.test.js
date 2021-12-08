@@ -24,8 +24,6 @@ describe('DELETE /profile/{id}', () => {
     test('should respond with status code 200 OK', async() => {
       await startInTest(getDefaultInstance())
       await delay(500)
-      console.log(`profile.id`)
-      console.log(profile.id)
       const response = await request(app).delete(`/profile/${profile.pid}`).send()
       expect(response.statusCode).toBe(204)
     })
