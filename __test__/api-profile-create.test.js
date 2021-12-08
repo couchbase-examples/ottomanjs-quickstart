@@ -16,7 +16,7 @@ describe('POST /profile', () => {
   }
 
   describe('given a request with user & pass', () => {
-    const expected = { statusCode: 200, message: '' }
+    const expected = { statusCode: 400, message: '' }
     let pid
 
     test('should respond with statusCode 200 and return document persisted', async() => {
