@@ -4,10 +4,10 @@
   "description": "Profile Store in Couchbase with Node JS and Express",
   "main": "src/server.js",
   "scripts": {
-    "init-db": "env-cmd ./config/dev.env npx babel-node ./src/initializeCbServer.js",
-    "init-test-db": "env-cmd ./config/test.env npx babel-node ./src/initializeCbServer.js",
-    "start": "env-cmd ./config/dev.env nodemon --exec babel-node src/server",
-    "test": "env-cmd ./config/test.env jest --verbose --forceExit --detectOpenHandles",
+    "init-db": "env-cmd -f ./config/dev.env npx babel-node ./src/initializeCbServer.js",
+    "init-test-db": "env-cmd -f ./config/test.env npx babel-node ./src/initializeCbServer.js",
+    "start": "env-cmd -f ./config/dev.env nodemon --exec babel-node src/server",
+    "test": "env-cmd -f ./config/test.env jest --verbose --forceExit --detectOpenHandles",
     "clean": "rm -rf dist",
     "build": "npm run clean && babel ./src --out-dir dist --copy-files"
   },
@@ -26,13 +26,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.21.2",
+    "axios": "^0.24.0",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "ottoman": "^2.0.0",
     "qs": "^6.10.1",
-    "swagger-ui-express": "^4.1.6",
+    "swagger-ui-express": "^4.3.0",
     "uuid": "^8.3.2",
     "yamljs": "^0.3.0"
   },
@@ -42,7 +42,7 @@
     "@babel/node": "^7.13.13",
     "@babel/plugin-transform-runtime": "^7.13.15",
     "@babel/preset-env": "^7.14.1",
-    "env-cmd": "^8.0.2",
+    "env-cmd": "^10.1.0",
     "jest": "^27.4.2",
     "nodemon": "^2.0.7",
     "supertest": "^6.1.3"
