@@ -29,7 +29,7 @@
     "axios": "^0.24.0",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "ottoman": "^2.1.0",
     "qs": "^6.10.1",
     "swagger-ui-express": "^4.3.0",
