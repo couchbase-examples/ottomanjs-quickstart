@@ -50,7 +50,7 @@ const restCreateCollection = async() => {
     if (error.response === undefined) {
       console.error("Error Creating Collection:", error.code);
     } else if (error.response.status === 404) {
-      console.error(`Error Creating Collection: bucket \'${COUCHBASE_BUCKET}\' not found. \n`)
+      console.error(`Error Creating Collection: bucket \'${process.env.CB_BUCKET}\' not found. \n`)
     } else {
       console.log(`Collection may already exist: ${error.message} \n`)
     }
