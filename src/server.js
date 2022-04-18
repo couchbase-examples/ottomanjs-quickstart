@@ -16,6 +16,7 @@ const startApiServer = async() => {
         connectionString: 'couchbases://'+ process.env.CB_URL +'ssl=no_verify',
         username: process.env.CB_USER,
         password: process.env.CB_PASS,
+
       })
     } else {
       await ottoman.connect({
