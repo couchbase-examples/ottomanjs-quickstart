@@ -25,9 +25,9 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: Setup couchbase
       run: |
-        apt install -y iputils-ping || echo "apt-install failed"
+        sudo apt install -y iputils-ping || echo "apt-install failed"
         ping -c 1 couchbase && (
-          apt install -y socat
+          sudo apt install -y socat
           socat TCP-LISTEN:8091,fork TCP:couchbase:8091 &
           socat TCP-LISTEN:8092,fork TCP:couchbase:8092 &
           socat TCP-LISTEN:8093,fork TCP:couchbase:8093 &
@@ -78,7 +78,12 @@ jobs:
         SLACK_WEBHOOK_URL: ${{ secrets.ACTION_MONITORING_SLACK }}
     services:
       couchbase:
-        image: couchbase:enterprise-7.0.0
+        image: public.ecr.aws/z2f7n8a1/couchbase-da-containers:couchbase-neo 
+        options: >-
+          --health-cmd "wget -q -O - localhost:8091"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 10
         ports:
           - 8091:8091
           - 8092:8092
