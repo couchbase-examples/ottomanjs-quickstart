@@ -24,10 +24,6 @@ After cloning the repo, install required dependencies:
 npm install
 ```
 
-```sh
-npm run init-db
-```
-
 At this point our application is ready and we can simply run:
 
 ```sh
