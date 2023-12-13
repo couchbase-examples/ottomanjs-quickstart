@@ -234,7 +234,7 @@ info:
     Models
     <div style="float: left;">Swagger documents the structure of request and response bodies using models. These models define the expected data structure using JSON schema and are extremely helpful in understanding what data to send and expect.
     For details on the API, please check the tutorial on the Couchbase Developer Portal: https://developer.couchbase.com/tutorial-quickstart-ottomanjs
-  title: Using Ottoman & Express JS
+  title:  Quickstart in Couchbase with Ottoman JS and Express
   version: "1.0"
 paths:
   /api/v1/airline/{id}:

@@ -1,13 +1,14 @@
-import {app, ottoman} from '../src/app'
+import { app, ottoman } from '../src/app'
 
 let instance;
-beforeAll(async() => {
+beforeAll(async () => {
   try {
+    console.log(process.env)
     await ottoman.connect({
-      bucketName: process.env.CB_BUCKET,
-      connectionString: process.env.CB_URL,
-      username: process.env.CB_USER,
-      password: process.env.CB_PASS,
+      bucketName: process.env.DB_BUCKET_NAME,
+      connectionString: process.env.DB_CONN_STR,
+      username: process.env.DB_USERNAME,
+      password: process.env.DB_PASSWORD,
     })
     // By default start function will wait for indexes, but you can disabled it setting ignoreWatchIndexes to true.
     // It's not required to execute the start method in order for Ottoman work.
