@@ -2,7 +2,7 @@ name: Node Ottoman Tests
 on:
   push:
     branches:
-      - [ottoman-quickstart-v2]
+      - ottoman-quickstart-v2
 
 jobs:
   test:
