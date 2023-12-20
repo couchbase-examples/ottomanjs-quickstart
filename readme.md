@@ -115,7 +115,7 @@ Swagger documents the structure of request and response bodies using models. The
 To run the standard tests, use the following commands:
 
 ```sh
-# Run standard integration tests for the project
+# Execute this command in the project's root directory
 npm test
 ```
 

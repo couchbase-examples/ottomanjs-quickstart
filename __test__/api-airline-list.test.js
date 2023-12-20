@@ -8,7 +8,7 @@ import { delay, startInTest } from './testData'
 import { AirlineModel } from '../src/models/airlineModel'
 
 describe('GET /api/v1/airline/list', () => {
-  describe('given we get airlines with skip 1, limit 1, and search text of "jo"', () => {
+  describe('given country limit & offset as request params"', () => {
     var airline1 = new AirlineModel({
       name: 'Initial Test Name', icao: 'INITIALTEST',
       country: 'Test Country', id: '777'
@@ -27,7 +27,7 @@ describe('GET /api/v1/airline/list', () => {
         .catch((e) => console.log(`test airline insert failed: ${e.message}`))
       await delay(2000)
     })
-    test('should respond with status code 200 OK and return two documents', async () => {
+    test('should respond with status code 200 OK and return the documents', async () => {
       await startInTest(getDefaultInstance())
       await delay(500)
       const response = await request(app)

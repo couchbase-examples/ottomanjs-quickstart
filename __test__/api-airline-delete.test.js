@@ -20,7 +20,7 @@ describe('DELETE /api/v1/airline/{id}', () => {
         .catch((e) => console.log(`Test Airline Insert Failed: ${e.message}`))
     })
 
-    test('should respond with status code 200 OK', async () => {
+    test('should respond with status code 204 Deleted', async () => {
       await startInTest(getDefaultInstance())
       await delay(500)
       const response = await request(app).delete(`/api/v1/airline/${airline.id}`).send()

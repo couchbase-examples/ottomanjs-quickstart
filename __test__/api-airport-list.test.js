@@ -8,7 +8,7 @@ import { delay, startInTest } from './testData'
 import { AirportModel } from '../src/models/airportModel'
 
 describe('GET /api/v1/airport/list', () => {
-    describe('given we get airports with skip 1, limit 1, and search text of "jo"', () => {
+    describe('given country limit & offset as request params "', () => {
         var airport1 = new AirportModel({
             airportName: 'Initial Test Name', city: 'Initial Test City',
             country: 'Initial Test Country', id: '777', faa: 'TESTFAA'
@@ -27,7 +27,7 @@ describe('GET /api/v1/airport/list', () => {
                 .catch((e) => console.log(`test airport insert failed: ${e.message}`))
             await delay(2000)
         })
-        test('should respond with status code 200 OK and return two documents', async () => {
+        test('should respond with status code 200 OK and return the documents', async () => {
             await startInTest(getDefaultInstance())
             await delay(500)
             const response = await request(app)

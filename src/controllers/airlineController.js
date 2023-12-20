@@ -87,7 +87,6 @@ const getAirlinesToAirport = async (req, res) => {
     .orderBy({ "air.name": "ASC" })
     .limit(limit)
     .offset(offset);
-  console.log(mainQuery.build());
   await makeResponse(res, async () => {
     const result = await ottoman.query(mainQuery.build());
     return result.rows;

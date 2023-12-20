@@ -3,7 +3,6 @@ import { app, ottoman } from '../src/app'
 let instance;
 beforeAll(async () => {
   try {
-    console.log(process.env)
     await ottoman.connect({
       bucketName: process.env.DB_BUCKET_NAME,
       connectionString: process.env.DB_CONN_STR,

@@ -77,7 +77,6 @@ const getDirectConnections = async (req, res) => {
     .limit(limit)
     .offset(offset);
 
-  console.log(subquery.build());
   await makeResponse(res, async () => {
     const result = await ottoman.query(subquery.build());
     return result.rows;
