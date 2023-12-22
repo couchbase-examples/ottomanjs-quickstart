@@ -1,6 +1,5 @@
 import {
     request, describe, test, expect,    //supertes
-    getDefaultInstance,                 // ottoman
     app                                 // REST application
 } from './imports'
 
@@ -21,7 +20,6 @@ describe('GET /api/v1/route/{id}', () => {
         })
 
         test('should respond with status code 200 OK and return route as object', async () => {
-            await startInTest(getDefaultInstance())
             await delay(500)
             const response = await request(app).get(`/api/v1/route/${route.id}`).send()
             expect(response.statusCode).toBe(200)

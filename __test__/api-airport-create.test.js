@@ -1,6 +1,5 @@
 import {
     request, describe, test, expect,    //supertes
-    getDefaultInstance,                 // ottoman
     app                                 // REST application
 } from './imports'
 
@@ -19,7 +18,6 @@ describe('POST /api/v1/airport/', () => {
         let id
 
         test('should respond with statusCode 200 and return document persisted', async () => {
-            await startInTest(getDefaultInstance())
             await delay(500)
             const response = await request(app).post('/api/v1/airport/').send(airport)
 

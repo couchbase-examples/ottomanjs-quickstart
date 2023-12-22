@@ -1,6 +1,5 @@
 import {
     request, describe, test, expect,    //supertes
-    getDefaultInstance,                 // ottoman
     app                                 // REST application
 } from './imports'
 
@@ -28,7 +27,6 @@ describe('GET /api/v1/airport/list', () => {
             await delay(2000)
         })
         test('should respond with status code 200 OK and return the documents', async () => {
-            await startInTest(getDefaultInstance())
             await delay(500)
             const response = await request(app)
                 .get(`/api/v1/airport/list`)

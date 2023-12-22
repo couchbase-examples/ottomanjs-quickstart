@@ -1,10 +1,9 @@
 import {
   request, describe, test, expect,    //supertes
-  getDefaultInstance,                 // ottoman
   app                                 // REST application
 } from './imports'
 
-import { delay, startInTest } from './testData'
+import { delay } from './testData'
 import { AirlineModel } from '../src/models/airlineModel'
 
 describe('PUT /api/v1/airline/', () => {
@@ -25,7 +24,6 @@ describe('PUT /api/v1/airline/', () => {
     })
 
     test('should respond with status code 200 OK and updated values of document returned', async () => {
-      await startInTest(getDefaultInstance())
       await delay(500)
       const response = await request(app).put(`/api/v1/airline/`).send(updatedAirline)
       expect(response.statusCode).toBe(200)

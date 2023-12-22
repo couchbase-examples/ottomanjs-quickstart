@@ -1,6 +1,5 @@
 import {
     request, describe, test, expect,    //supertes
-    getDefaultInstance,                 // ottoman
     app                                 // REST application
 } from './imports'
 
@@ -29,7 +28,6 @@ describe('GET /api/v1/airport/direct-connections', () => {
             await delay(2000)
         })
         test('should respond with status code 200 OK and return the direct connection documents', async () => {
-            await startInTest(getDefaultInstance())
             await delay(500)
             const response = await request(app)
                 .get(`/api/v1/airport/direct-connections`)
@@ -37,7 +35,7 @@ describe('GET /api/v1/airport/direct-connections', () => {
                     offset: 0, limit: 5, airport: 'TESTFAA'
                 })
             expect(response.statusCode).toBe(200)
-        },40000)
+        }, 40000)
 
         afterEach(async () => {
             await AirportModel.removeById(airport.id)

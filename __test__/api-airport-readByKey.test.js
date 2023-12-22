@@ -1,10 +1,9 @@
 import {
     request, describe, test, expect,    //supertes
-    getDefaultInstance,                 // ottoman
     app                                 // REST application
 } from './imports'
 
-import { delay, startInTest } from './testData'
+import { delay } from './testData'
 import { AirportModel } from '../src/models/airportModel'
 
 describe('GET /api/v1/airport/{id}', () => {
@@ -21,7 +20,6 @@ describe('GET /api/v1/airport/{id}', () => {
         })
 
         test('should respond with status code 200 OK and return airport as object', async () => {
-            await startInTest(getDefaultInstance())
             await delay(500)
             const response = await request(app).get(`/api/v1/airport/${airport.id}`).send()
             expect(response.statusCode).toBe(200)

@@ -1,6 +1,6 @@
 import {
   request, describe, test, expect,    //supertes
-  getDefaultInstance,                 // ottoman
+
   app                                 // REST application
 } from './imports'
 
@@ -21,7 +21,6 @@ describe('DELETE /api/v1/airline/{id}', () => {
     })
 
     test('should respond with status code 204 Deleted', async () => {
-      await startInTest(getDefaultInstance())
       await delay(500)
       const response = await request(app).delete(`/api/v1/airline/${airline.id}`).send()
       expect(response.statusCode).toBe(204)
