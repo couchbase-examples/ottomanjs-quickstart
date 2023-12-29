@@ -1,4 +1,4 @@
-import { model, Schema } from "ottoman";
+import { model, Schema } from 'ottoman'
 
 const AirlineSchema = new Schema({
   callsign: { type: String, required: false },
@@ -7,14 +7,14 @@ const AirlineSchema = new Schema({
   icao: { type: String, required: true },
   name: { type: String, required: true },
   id: { type: String, required: true },
-});
+})
 
-const AirlineModel = model("airline", AirlineSchema, {
-  modelKey: "type",
-  collectionName: "airline",
-  keyGeneratorDelimiter: "_",
-});
+const AirlineModel = model('airline', AirlineSchema, {
+  modelKey: 'type',
+  collectionName: 'airline',
+  keyGeneratorDelimiter: '_',
+})
 
 module.exports = {
   AirlineModel,
-};
+}

@@ -1,8 +1,24 @@
-import { Ottoman, getOttomanInstances, getDefaultInstance, ValidationError, FindOptions, SearchConsistency,Query } from 'ottoman'
+import {
+  Ottoman,
+  getOttomanInstances,
+  getDefaultInstance,
+  ValidationError,
+  FindOptions,
+  SearchConsistency,
+  Query,
+} from 'ottoman'
 
 const ottoman = new Ottoman({
   modelKey: 'type',
-  scopeName: 'inventory'
+  scopeName: 'inventory',
 })
 
-module.exports = { ottoman, getOttomanInstances, getDefaultInstance, ValidationError, FindOptions, SearchConsistency,Query }
+module.exports = {
+  ottoman,
+  getOttomanInstances,
+  getDefaultInstance,
+  ValidationError,
+  FindOptions,
+  SearchConsistency,
+  Query,
+}

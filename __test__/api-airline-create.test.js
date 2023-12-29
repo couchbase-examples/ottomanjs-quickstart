@@ -1,17 +1,20 @@
 import {
-  request, describe, test, expect,    //supertes
-
-  app                                 // REST application
+  request,
+  describe,
+  test,
+  expect, //supertes
+  app, // REST application
 } from './imports'
 
 import { delay, startInTest } from './testData'
 import { AirlineModel } from '../src/models/airlineModel'
 
 describe('POST /api/v1/airline/', () => {
-
   var airline = new AirlineModel({
-    name: 'Test Name', icao: 'TEST',
-    country: 'Test Country', id: '777'
+    name: 'Test Name',
+    icao: 'TEST',
+    country: 'Test Country',
+    id: '777',
   })
 
   describe('given a request with airline data', () => {
@@ -24,20 +27,22 @@ describe('POST /api/v1/airline/', () => {
 
       id = response.body.id
 
-      delete response.body.id;
+      delete response.body.id
 
       expect(response.statusCode).toBe(expected.statusCode)
       expect(response.body).toMatchObject({
-        name: airline.name, icao: airline.icao, country: airline.country
+        name: airline.name,
+        icao: airline.icao,
+        country: airline.country,
       })
     })
 
     afterEach(async () => {
       await AirlineModel.removeById(id)
-        .then(() => { console.log('test airline document deleted', id) })
+        .then(() => {
+          console.log('test airline document deleted', id)
+        })
         .catch((e) => console.log(`test airline remove failed: ${e.message}`))
     })
-
   })
-
 })

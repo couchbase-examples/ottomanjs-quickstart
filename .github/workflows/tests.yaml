@@ -2,7 +2,11 @@ name: Node Ottoman Tests
 on:
   push:
     branches:
-      - ottoman-quickstart-v2
+      - main
+  pull_request:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 15 * * *"
 
 jobs:
   test:
@@ -26,7 +30,7 @@ jobs:
         run: npm install
 
       - name: Run tests
-        run: npm test
+        run: npm testGA
       - name: Report Status
         if: always()
         uses: ravsamhq/notify-slack-action@v1

@@ -1,4 +1,4 @@
-import express from "express";
+import express from 'express'
 import {
   createAirline,
   getAirline,
@@ -6,20 +6,20 @@ import {
   deleteAirline,
   listAirlines,
   getAirlinesToAirport,
-} from "../controllers/airlineController";
+} from '../controllers/airlineController'
 
-const router = express.Router();
+const router = express.Router()
 
-router.get("/list", listAirlines);
+router.get('/list', listAirlines)
 
-router.get("/to-airport", getAirlinesToAirport);
+router.get('/to-airport', getAirlinesToAirport)
 
-router.post("/", createAirline);
+router.post('/', createAirline)
 
-router.get("/:id", getAirline);
+router.get('/:id', getAirline)
 
-router.put("/", updateAirline);
+router.put('/', updateAirline)
 
-router.delete("/:id", deleteAirline);
+router.delete('/:id', deleteAirline)
 
-export default router;
+export default router
