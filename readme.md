@@ -1,6 +1,6 @@
 # Quickstart in Couchbase with Ottoman JS and Express
 
-#### Build a REST API with Node JS and Express
+#### Build a REST API with Ottoman, Node JS and Express
 
 Often, the first step developers do after creating their database is to create a REST API that can perform Create, Read, Update, and Delete (CRUD) operations for that database. This repo is designed to teach you and give you a starter project (in Ottoman JS using Express) to generate such a REST API. After you have installed travel-sample bucket in your database, you can run this application which is a REST API with Swagger documentation so that you can learn:
 
@@ -20,12 +20,6 @@ To run this prebuilt project, you will need:
 - Loading Travel Sample Bucket
   If travel-sample is not loaded in your Capella cluster, you can load it by following the instructions for your Capella Cluster:
   - [Load travel-sample bucket in Couchbase Capella](https://docs.couchbase.com/cloud/clusters/data-service/import-data-documents.html#import-sample-data)
-
-### Loading Travel Sample Bucket
-
-If travel-sample is not loaded in your Capella cluster, you can load it by following the instructions for your Capella Cluster:
-
-- [Load travel-sample bucket in Couchbase Capella](https://docs.couchbase.com/cloud/clusters/data-service/import-data-documents.html#import-sample-data)
 
 ## App Setup
 
@@ -54,7 +48,15 @@ Specifically, you need to do the following:
 - Create the [database credentials](https://docs.couchbase.com/cloud/clusters/manage-database-users.html) to access the travel-sample bucket (Read and Write) used in the application.
 - [Allow access](https://docs.couchbase.com/cloud/clusters/allow-ip-address.html) to the Cluster from the IP on which the application is running.
 
-All configuration for communication with the database is read from the environment variables. We have provided a convenience feature in this quickstart to read the environment variables from a local file, `dev.env` in the `config` folder.
+#### Loading Travel Sample Bucket
+
+If travel-sample is not loaded in your Capella cluster, you can load it by following the instructions for your Capella Cluster:
+
+- [Load travel-sample bucket in Couchbase Capella](https://docs.couchbase.com/cloud/clusters/data-service/import-data-documents.html#import-sample-data)
+
+All configuration for communication with the database is read from the environment variables. We have provided a convenience feature in this quickstart to read the environment variables from a local file, `config/dev.env.example`.
+
+Create a copy of `dev.env.example` file and rename it to `dev.env` and add the values for the Couchbase connection.
 
 ```sh
 DB_CONN_STR=<connection_string>
@@ -93,7 +95,7 @@ docker build -t couchbase-ottoman-express-js-quickstart .
 docker run -it --env-file config/dev.env -p 3000:3000 couchbase-ottoman-express-js-quickstart
 ```
 
-> Note: The `dev.env` file has the connection information to connect to your Capella cluster. These will be part of the environment variables in the Docker container.
+> Note: The `config/dev.env` file has the connection information to connect to your Capella cluster. These will be part of the environment variables in the Docker container.
 
 ### Verifying the Application
 
@@ -106,6 +108,8 @@ The application will run on port 3000 of your local machine (http://localhost:30
 ![Swagger Documentation](swagger_documentation.png)
 
 ## Running The Tests
+
+Create a copy of `config/test.env.example` file and rename it to `config/test.env` and add the values for the Couchbase connection.
 
 To run the standard tests, use the following commands:
 
@@ -139,11 +143,37 @@ If you would like to add another entity to the APIs, these are the steps to foll
   - Add the tests for the new routes in a new file in the `__test__` folder similar to other collection tests.
 
 Following these steps ensures a systematic and organized approach to expanding the API functionality with a new entity.
+
+### Understanding How Ottoman Works and Extending Functionality
+
+#### Key Generation Layer:
+Ottoman simplifies key management by introducing an abstraction layer for handling keys used to store and access documents on the Couchbase database. Developers work with document IDs, while Ottoman automatically manages the keys for them.
+
+#### keyGenerator Function:
+The keyGenerator function is crucial in Ottoman's key generation process. The default function combines the model name with a unique identifier to form the key. Developers can override this function to customize key generation.
+
+Example using the default keyGenerator:
+```js
+const keyGenerator = ({ metadata }) => `${metadata.modelName}::0477024c`;
+```
+
+Example overriding keyGenerator:
+```js
+const keyGenerator = ({ metadata }) => `${metadata.scopeName}::0477024c`;
+const User = model('User', schema, { keyGenerator, scopeName: 'myScope' });
+```
+
+#### Extending Ottoman Functionality:
+Developers can extend Ottoman's functionality by customizing the keyGenerator function. This allows for modifications to key generation logic, including prefix changes or removal. By understanding Ottoman's internal workings, developers gain the flexibility to tailor the library to specific project requirements.
+
+For more in-depth information, refer to the [Ottoman Documentation on How Ottoman Works](https://ottomanjs.com/docs/advanced/how-ottoman-works).
+
+
 ### Running Self Managed Couchbase Cluster
 
 If you are running this quickstart with a self managed Couchbase cluster, you need to [load](https://docs.couchbase.com/server/current/manage/manage-settings/install-sample-buckets.html) the travel-sample data bucket in your cluster and generate the credentials for the bucket by [creating a user](https://docs.couchbase.com/server/current/manage/manage-security/manage-users-and-roles.html#add-a-user).
 
-You need to update the connection string and the credentials in the `dev.env` file in the `config` folder.
+You need to update the connection string and the credentials in the `config/dev.env` file.
 
 > Note: Couchbase Server must be installed and running prior to running this app.
 ### Swagger Documentation
