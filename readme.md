@@ -21,6 +21,15 @@ To run this prebuilt project, you will need:
   If travel-sample is not loaded in your Capella cluster, you can load it by following the instructions for your Capella Cluster:
   - [Load travel-sample bucket in Couchbase Capella](https://docs.couchbase.com/cloud/clusters/data-service/import-data-documents.html#import-sample-data)
 
+## Similar Quickstart Repos
+
+If you are looking for a quickstart using NodeJs, you can find it in this [repo](https://github.com/couchbase-examples/nodejs-quickstart.git)
+
+If you are looking for a quickstart using Typescript, you can find it in this [repo](https://github.com/couchbase-examples/typescript-quickstart.git)
+
+If you are looking for a quickstart using NextJs, you can find it in this [repo](https://github.com/couchbase-examples/nextjs-capella-quickstart.git)
+
+
 ## App Setup
 
 We will walk through the different steps required to get the application running.
