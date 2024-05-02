@@ -23,11 +23,11 @@ To run this prebuilt project, you will need:
 
 ## Similar Quickstart Repos
 
-If you are looking for a quickstart using NodeJs, you can find it in this [repo](https://github.com/couchbase-examples/nodejs-quickstart.git)
+If you are looking for a quickstart using Node.js, you can find it in this [repo](https://github.com/couchbase-examples/nodejs-quickstart.git)
 
-If you are looking for a quickstart using Typescript, you can find it in this [repo](https://github.com/couchbase-examples/typescript-quickstart.git)
+If you are looking for a quickstart using TypeScript, you can find it in this [repo](https://github.com/couchbase-examples/typescript-quickstart.git)
 
-If you are looking for a quickstart using NextJs, you can find it in this [repo](https://github.com/couchbase-examples/nextjs-capella-quickstart.git)
+If you are looking for a quickstart using Next.js, you can find it in this [repo](https://github.com/couchbase-examples/nextjs-capella-quickstart.git)
 
 
 ## App Setup
