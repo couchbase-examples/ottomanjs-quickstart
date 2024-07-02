@@ -31,7 +31,7 @@
     "cors": "^2.8.5",
     "couchbase": "^4.2.8",
     "express": "^4.18.2",
-    "ottoman": "^2.3.4",
+    "ottoman": "^2.5.0",
     "qs": "^6.12.2",
     "swagger-ui-express": "^4.6.2",
     "uuid": "^9.0.0",
