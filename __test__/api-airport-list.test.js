@@ -6,26 +6,26 @@ import {
   app, // REST application
 } from './imports'
 
-import { delay, startInTest } from './testData'
+import { delay, testCode, testId, testName } from './testData'
 import { AirportModel } from '../src/models/airportModel'
+
+const airport1 = new AirportModel({
+  airportName: testName('Initial Test Airport'),
+  city: testName('Initial Test City'),
+  country: 'Test Country',
+  id: testId('airport'),
+  faa: testCode('FAA'),
+})
+const airport2 = new AirportModel({
+  airportName: testName('Updated Test Airport'),
+  city: testName('Updated Test City'),
+  country: 'Test Country',
+  id: testId('airport'),
+  faa: testCode('FAA'),
+})
 
 describe('GET /api/v1/airport/list', () => {
   describe('given country limit & offset as request params "', () => {
-    var airport1 = new AirportModel({
-      airportName: 'Initial Test Name',
-      city: 'Initial Test City',
-      country: 'Initial Test Country',
-      id: '777',
-      faa: 'TESTFAA',
-    })
-    var airport2 = new AirportModel({
-      airportName: 'Updated Test Name',
-      city: 'Updated Test City',
-      country: 'Updated Test Country',
-      id: '778',
-      faa: 'TESTFAA',
-    })
-
     beforeEach(async () => {
       await airport1
         .save()

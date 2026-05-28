@@ -6,26 +6,27 @@ import {
   app, // REST application
 } from './imports'
 
-import { delay } from './testData'
+import { delay, testCode, testId, testName } from './testData'
 import { RouteModel } from '../src/models/routeModel'
+
+const routeId = testId('route')
+const initialRoute = new RouteModel({
+  airline: testName('Initial Test Airline'),
+  airlineid: testId('airline'),
+  sourceairport: testName('Initial Test Airport'),
+  id: routeId,
+  destinationairport: testCode('FAA'),
+})
+const updatedRoute = new RouteModel({
+  airline: testName('Updated Test Airline'),
+  airlineid: testId('airline'),
+  sourceairport: testName('Updated Test Airport'),
+  id: routeId,
+  destinationairport: testCode('FAA'),
+})
 
 describe('PUT /api/v1/route/', () => {
   describe('given the route object is updated', () => {
-    var initialRoute = new RouteModel({
-      airline: 'Initial Test Airline',
-      airlineid: 'Initial Test AirlineId',
-      sourceairport: 'Initial Test Airport',
-      id: '777',
-      destinationairport: 'TESTFAA',
-    })
-    var updatedRoute = new RouteModel({
-      airline: 'Updated Test Airline',
-      airlineid: 'Updated Test AirlineId',
-      sourceairport: 'Updated Test Airport',
-      id: '777',
-      destinationairport: 'TESTQAA',
-    })
-
     beforeEach(async () => {
       await initialRoute
         .save()

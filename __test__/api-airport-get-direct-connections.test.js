@@ -6,27 +6,28 @@ import {
   app, // REST application
 } from './imports'
 
-import { delay, startInTest } from './testData'
+import { delay, testCode, testId, testName } from './testData'
 import { AirportModel } from '../src/models/airportModel'
 import { RouteModel } from '../src/models/routeModel'
 
+const airportCode = testCode('FAA')
+const airport = new AirportModel({
+  airportName: testName('Initial Test Airport'),
+  city: testName('Initial Test City'),
+  country: 'Initial Test Country',
+  id: testId('airport'),
+  faa: airportCode,
+})
+const route = new RouteModel({
+  airline: testName('Test Airline'),
+  airlineid: testId('airline'),
+  sourceairport: airportCode,
+  id: testId('route'),
+  destinationairport: testName('Destination Airport'),
+})
+
 describe('GET /api/v1/airport/direct-connections', () => {
   describe('given airport limit & offset as req params"', () => {
-    var airport = new AirportModel({
-      airportName: 'Initial Test Name',
-      city: 'Initial Test City',
-      country: 'Initial Test Country',
-      id: '777',
-      faa: 'TESTFAA',
-    })
-    var route = new RouteModel({
-      airline: 'Test Airline',
-      airlineid: 'Test AirlineId',
-      sourceairport: 'TESTFAA',
-      id: '777',
-      destinationairport: 'Test Destination Airport',
-    })
-
     beforeEach(async () => {
       await airport
         .save()
@@ -49,7 +50,7 @@ describe('GET /api/v1/airport/direct-connections', () => {
         .query({
           offset: 0,
           limit: 5,
-          airport: 'TESTFAA',
+          airport: airportCode,
         })
       expect(response.statusCode).toBe(200)
     }, 40000)

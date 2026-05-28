@@ -6,18 +6,18 @@ import {
   app, // REST application
 } from './imports'
 
-import { delay, startInTest } from './testData'
+import { delay, testCode, testId, testName } from './testData'
 import { AirportModel } from '../src/models/airportModel'
 
-describe('POST /api/v1/airport/', () => {
-  var airport = new AirportModel({
-    airportName: 'Test Name',
-    city: 'Test City',
-    country: 'Test Country',
-    id: '777',
-    faa: 'TESTFAA',
-  })
+const airport = new AirportModel({
+  airportName: testName('Test Airport'),
+  city: testName('Test City'),
+  country: 'Test Country',
+  id: testId('airport'),
+  faa: testCode('FAA'),
+})
 
+describe('POST /api/v1/airport/', () => {
   describe('given a request with airport data', () => {
     const expected = { statusCode: 201, message: '' }
     let id
