@@ -1,32 +1,33 @@
 import { request, describe, test, expect, app } from './imports'
 
-import { delay } from './testData'
+import { delay, testCode, testId, testName } from './testData'
 import { AirlineModel } from '../src/models/airlineModel'
 import { RouteModel } from '../src/models/routeModel'
 
+const destinationAirport = testCode('FAA')
+const airline1 = new AirlineModel({
+  name: testName('Initial Test Airline'),
+  icao: testCode('AT'),
+  country: 'Test Country',
+  id: testId('airline'),
+})
+
+const airline2 = new AirlineModel({
+  name: testName('Updated Test Airline'),
+  icao: testCode('AT'),
+  country: 'Test Country',
+  id: testId('airline'),
+})
+
+const route1 = new RouteModel({
+  airlineid: airline1.id,
+  destinationairport: destinationAirport,
+  sourceairport: testCode('SRC'),
+  airline: testName('Test Airline'),
+})
+
 describe('GET /api/v1/airline/list', () => {
   describe('given airport limit & offset as request params', () => {
-    var airline1 = new AirlineModel({
-      name: 'Initial Test Name',
-      icao: 'INITIALTEST',
-      country: 'Test Country',
-      id: '777',
-    })
-
-    var airline2 = new AirlineModel({
-      name: 'Update Test Name',
-      icao: 'UPDATETEST',
-      country: 'Test Country',
-      id: '778',
-    })
-
-    var route1 = new RouteModel({
-      airlineid: airline1.id,
-      destinationairport: 'FAA',
-      sourceairport: 'TESTSOURCE',
-      airline: 'TESTAIRLINE',
-    })
-
     beforeEach(async () => {
       await airline1
         .save()
@@ -57,7 +58,7 @@ describe('GET /api/v1/airline/list', () => {
       const response = await request(app).get(`/api/v1/airline/list`).query({
         offset: 0,
         limit: 5,
-        airport: 'FAA',
+        airport: destinationAirport,
       })
       expect(response.statusCode).toBe(200)
     })

@@ -6,24 +6,25 @@ import {
   app, // REST application
 } from './imports'
 
-import { delay, startInTest } from './testData'
+import { delay, testCode, testId, testName } from './testData'
 import { AirlineModel } from '../src/models/airlineModel'
+
+const airline1 = new AirlineModel({
+  name: testName('Initial Test Airline'),
+  icao: testCode('AL'),
+  country: 'Test Country',
+  id: testId('airline'),
+})
+
+const airline2 = new AirlineModel({
+  name: testName('Updated Test Airline'),
+  icao: testCode('AL'),
+  country: 'Test Country',
+  id: testId('airline'),
+})
 
 describe('GET /api/v1/airline/list', () => {
   describe('given country limit & offset as request params"', () => {
-    var airline1 = new AirlineModel({
-      name: 'Initial Test Name',
-      icao: 'INITIALTEST',
-      country: 'Test Country',
-      id: '777',
-    })
-    var airline2 = new AirlineModel({
-      name: 'Update Test Name',
-      icao: 'UPDATETEST',
-      country: 'Test Country',
-      id: '778',
-    })
-
     beforeEach(async () => {
       await airline1
         .save()
