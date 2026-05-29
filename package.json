@@ -37,7 +37,7 @@
     "express": "^5.2.1",
     "ottoman": "^2.5.6",
     "qs": "^6.15.2",
-    "swagger-ui-express": "^4.6.3",
+    "swagger-ui-express": "^5.0.1",
     "uuid": "^11.1.1",
     "yamljs": "^0.3.0"
   },
