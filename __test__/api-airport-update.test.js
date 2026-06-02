@@ -6,26 +6,28 @@ import {
   app, // REST application
 } from './imports'
 
-import { delay } from './testData'
+import { delay, testCode, testId, testName } from './testData'
 import { AirportModel } from '../src/models/airportModel'
+
+const airportId = testId('airport')
+const airportCode = testCode('FAA')
+const initialAirport = new AirportModel({
+  airportName: testName('Initial Test Airport'),
+  city: testName('Initial Test City'),
+  country: 'Initial Test Country',
+  id: airportId,
+  faa: airportCode,
+})
+const updatedAirport = new AirportModel({
+  airportName: testName('Updated Test Airport'),
+  city: testName('Updated Test City'),
+  country: 'Updated Test Country',
+  id: airportId,
+  faa: airportCode,
+})
 
 describe('PUT /api/v1/airport/', () => {
   describe('given the airport object is updated', () => {
-    var initialAirport = new AirportModel({
-      airportName: 'Initial Test Name',
-      city: 'Initial Test City',
-      country: 'Initial Test Country',
-      id: '777',
-      faa: 'TESTFAA',
-    })
-    var updatedAirport = new AirportModel({
-      airportName: 'Updated Test Name',
-      city: 'Updated Test City',
-      country: 'Updated Test Country',
-      id: '777',
-      faa: 'TESTFAA',
-    })
-
     beforeEach(async () => {
       await initialAirport
         .save()

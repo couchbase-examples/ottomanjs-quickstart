@@ -6,19 +6,19 @@ import {
   app, // REST application
 } from './imports'
 
-import { delay, startInTest } from './testData'
+import { delay, testCode, testId, testName } from './testData'
 import { RouteModel } from '../src/models/routeModel'
+
+const route = new RouteModel({
+  airline: testName('Test Airline'),
+  airlineid: testId('airline'),
+  sourceairport: testName('Test Airport'),
+  id: testId('route'),
+  destinationairport: testCode('FAA'),
+})
 
 describe('DELETE /api/v1/route/{id}', () => {
   describe('given we pass a id as request param', () => {
-    var route = new RouteModel({
-      airline: 'Test Airline',
-      airlineid: 'Test AirlineId',
-      sourceairport: 'Test Airport',
-      id: '777',
-      destinationairport: 'TESTFAA',
-    })
-
     beforeEach(async () => {
       await route
         .save()

@@ -6,18 +6,18 @@ import {
   app, // REST application
 } from './imports'
 
-import { delay, startInTest } from './testData'
+import { delay, testCode, testId, testName } from './testData'
 import { RouteModel } from '../src/models/routeModel'
 
-describe('POST /api/v1/route/', () => {
-  var route = new RouteModel({
-    airline: 'Test Airline',
-    airlineid: 'Test AirlineId',
-    sourceairport: 'Test Airport',
-    id: '777',
-    destinationairport: 'TESTFAA',
-  })
+const route = new RouteModel({
+  airline: testName('Test Airline'),
+  airlineid: testId('airline'),
+  sourceairport: testName('Test Airport'),
+  id: testId('route'),
+  destinationairport: testCode('FAA'),
+})
 
+describe('POST /api/v1/route/', () => {
   describe('given a request with route data', () => {
     const expected = { statusCode: 201, message: '' }
     let id

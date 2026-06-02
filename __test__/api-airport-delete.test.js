@@ -6,19 +6,19 @@ import {
   app, // REST application
 } from './imports'
 
-import { delay, startInTest } from './testData'
+import { delay, testCode, testId, testName } from './testData'
 import { AirportModel } from '../src/models/airportModel'
+
+const airport = new AirportModel({
+  airportName: testName('Test Airport'),
+  city: testName('Test City'),
+  country: 'Test Country',
+  id: testId('airport'),
+  faa: testCode('FAA'),
+})
 
 describe('DELETE /api/v1/airport/{id}', () => {
   describe('given we pass a id as request param', () => {
-    var airport = new AirportModel({
-      airportName: 'Test Name',
-      city: 'Test City',
-      country: 'Test Country',
-      id: '777',
-      faa: 'TESTFAA',
-    })
-
     beforeEach(async () => {
       await airport
         .save()

@@ -6,24 +6,25 @@ import {
   app, // REST application
 } from './imports'
 
-import { delay } from './testData'
+import { delay, testCode, testId, testName } from './testData'
 import { AirlineModel } from '../src/models/airlineModel'
+
+const airlineId = testId('airline')
+const initialAirline = new AirlineModel({
+  name: testName('Initial Test Airline'),
+  icao: testCode('AU'),
+  country: 'Initial Test Country',
+  id: airlineId,
+})
+const updatedAirline = new AirlineModel({
+  name: testName('Updated Test Airline'),
+  icao: testCode('AU'),
+  country: 'Update Test Country',
+  id: airlineId,
+})
 
 describe('PUT /api/v1/airline/', () => {
   describe('given the airline object is updated', () => {
-    var initialAirline = new AirlineModel({
-      name: 'Initial Test Name',
-      icao: 'INITIALTEST',
-      country: 'Initial Test Country',
-      id: '777',
-    })
-    var updatedAirline = new AirlineModel({
-      name: 'Update Test Name',
-      icao: 'UPDATETEST',
-      country: 'Update Test Country',
-      id: '777',
-    })
-
     beforeEach(async () => {
       await initialAirline
         .save()
