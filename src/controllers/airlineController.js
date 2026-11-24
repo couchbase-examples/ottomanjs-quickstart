@@ -1,47 +1,14 @@
 import { makeResponse } from '../shared/makeResponse'
+import { makeCrudController } from '../shared/crudController'
 import { AirlineModel } from '../models/airlineModel'
 import { Query, ottoman } from '../../db/ottomanConnection.js'
 
-const createAirline = async (req, res) => {
-  try {
-    // Try to find an existing document with the given ID
-    const existingAirline = await AirlineModel.findById(req.body.id)
-
-    if (existingAirline) {
-      // Document with the same id already exists
-      return res.status(409).json({ message: 'Duplicate key error' })
-    }
-  } catch (error) {
-    // Ignore the error (i.e document with key not found, proceed to create)
-  }
-  await makeResponse(res, async () => {
-    const airline = new AirlineModel(req.body)
-    await airline.save()
-    res.status(201)
-    return airline
-  })
-}
-
-const getAirline = async (req, res) => {
-  await makeResponse(res, async () => {
-    const airline = await AirlineModel.findById(req.params.id)
-    return airline
-  })
-}
-
-const updateAirline = async (req, res) => {
-  await makeResponse(res, async () => {
-    const airline = AirlineModel.replaceById(req.body.id, req.body)
-    return airline
-  })
-}
-
-const deleteAirline = async (req, res) => {
-  await makeResponse(res, async () => {
-    await AirlineModel.removeById(req.params.id)
-    res.status(204)
-  })
-}
+const {
+  create: createAirline,
+  read: getAirline,
+  update: updateAirline,
+  remove: deleteAirline,
+} = makeCrudController(AirlineModel)
 
 const listAirlines = async (req, res) => {
   const country = req.query.country || ''
